@@ -2,7 +2,7 @@
 const { createMacro } = require("babel-plugin-macros");
 const { addNamed } = require("@babel/helper-module-imports");
 
-const { getCSS, toHash } = require("./macro-helpers");
+const { getCSS, toHash, processCSS } = require("./macro-helpers");
 
 module.exports = createMacro(cssMacro);
 
@@ -23,7 +23,7 @@ function cssMacro({ references, babel, state }) {
 
       const className = toHash(CSS);
 
-      CSS = "." + className + "{" + CSS + "}";
+      CSS = processCSS("." + className + "{" + CSS + "}");
 
       const replacement = t.callExpression(t.identifier(cssFn.name), [
         t.stringLiteral(className),

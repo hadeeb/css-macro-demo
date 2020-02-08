@@ -2,9 +2,13 @@
 const { MacroError } = require("babel-plugin-macros");
 const postCSS = require("postcss");
 const autoprefixer = require("autoprefixer");
+const postcssNested = require("postcss-nested");
 
 //@ts-ignore
 const processor = postCSS([autoprefixer()]);
+
+//@ts-ignore
+const nestProcessor = postCSS([postcssNested()]);
 
 /**
  * @param {typeof import("@babel/core").types} t
@@ -45,7 +49,15 @@ function toHash(str) {
   return "css" + hash.toString(36);
 }
 
+/**
+ * @param {string} CSSString
+ */
+function processCSS(CSSString) {
+  return nestProcessor.process(CSSString).css;
+}
+
 module.exports = {
   getCSS,
-  toHash
+  toHash,
+  processCSS
 };
