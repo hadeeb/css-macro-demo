@@ -6,13 +6,12 @@ const postcssNested = require("postcss-nested");
 const postcssCSSO = require("postcss-csso");
 const postCSSJS = require("postcss-js");
 
-//@ts-ignore
-const processor = postCSS([autoprefixer()]);
+const processor = postCSS();
 //@ts-ignore
 const processJsObj = str => processor.process(str, { parser: postCSSJS });
 
 //@ts-ignore
-const nestProcessor = postCSS([postcssNested(), postcssCSSO()]);
+const nestProcessor = postCSS([postcssNested(), autoprefixer(), postcssCSSO()]);
 
 /**
  * @param {typeof import("@babel/core").types} t
@@ -28,8 +27,7 @@ function getCSS(t, node) {
     if (arg.length > 1) {
       throw new MacroError("Arguments are not supported in tagged templates");
     }
-    const styleString = arg[0].value.raw;
-    CSS = processor.process(styleString).css;
+    CSS = arg[0].value.raw;
   } else if (t.isCallExpression(node)) {
     const arg = node.arguments[0];
     if (t.isObjectExpression(arg)) {

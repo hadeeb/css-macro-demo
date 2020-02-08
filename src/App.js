@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
 import { css } from "./css.macro";
-import "./App.css";
 
 function App() {
   return (
@@ -25,7 +24,25 @@ function App() {
           color: "white"
         })}
       >
-        <img src={logo} className="App-logo" alt="logo" />
+        <img
+          src={logo}
+          className={css`
+            height: 40vmin;
+            pointer-events: none;
+            @media (prefers-reduced-motion: no-preference) {
+              animation: App-logo-spin infinite 20s linear;
+            }
+            @keyframes App-logo-spin {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(360deg);
+              }
+            }
+          `}
+          alt="logo"
+        />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
