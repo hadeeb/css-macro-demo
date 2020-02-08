@@ -7408,6 +7408,13 @@ postcss-convert-values@^4.0.1:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
+postcss-csso@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-csso/-/postcss-csso-4.0.0.tgz#30fef9303ecbeb0424dab1228275416fc7186a50"
+  integrity sha512-Yh9Ug0w3+T/LZIh1vGJQY8+hE13yFRHpINoAmgOhvu9lBmG1jyHkAprGHEHlGjWODJzB4DCNBVBb6Cs0QEoglQ==
+  dependencies:
+    csso "^4.0.2"
+
 postcss-custom-media@^7.0.8:
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/postcss-custom-media/-/postcss-custom-media-7.0.8.tgz#fffd13ffeffad73621be5f387076a28b00294e0c"

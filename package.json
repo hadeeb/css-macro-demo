@@ -32,6 +32,7 @@
     ]
   },
   "devDependencies": {
+    "postcss-csso": "^4.0.0",
     "postcss-nested": "^4.2.1"
   }
 }

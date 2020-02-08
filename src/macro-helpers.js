@@ -3,12 +3,13 @@ const { MacroError } = require("babel-plugin-macros");
 const postCSS = require("postcss");
 const autoprefixer = require("autoprefixer");
 const postcssNested = require("postcss-nested");
+const postcssCSSO = require("postcss-csso");
 
 //@ts-ignore
 const processor = postCSS([autoprefixer()]);
 
 //@ts-ignore
-const nestProcessor = postCSS([postcssNested()]);
+const nestProcessor = postCSS([postcssNested(), postcssCSSO()]);
 
 /**
  * @param {typeof import("@babel/core").types} t
