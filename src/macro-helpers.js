@@ -4,9 +4,12 @@ const postCSS = require("postcss");
 const autoprefixer = require("autoprefixer");
 const postcssNested = require("postcss-nested");
 const postcssCSSO = require("postcss-csso");
+const postCSSJS = require("postcss-js");
 
 //@ts-ignore
 const processor = postCSS([autoprefixer()]);
+//@ts-ignore
+const processJsObj = str => processor.process(str, { parser: postCSSJS });
 
 //@ts-ignore
 const nestProcessor = postCSS([postcssNested(), postcssCSSO()]);
@@ -27,6 +30,14 @@ function getCSS(t, node) {
     }
     const styleString = arg[0].value.raw;
     CSS = processor.process(styleString).css;
+  } else if (t.isCallExpression(node)) {
+    const arg = node.arguments[0];
+    if (t.isObjectExpression(arg)) {
+      let obj = AstToLiteral(t, arg);
+      CSS = processJsObj(obj).css;
+    } else {
+      throw new MacroError("Only inline Object expressions are supported");
+    }
   } else {
     throw new MacroError("Invalid usage");
   }
@@ -55,6 +66,53 @@ function toHash(str) {
  */
 function processCSS(CSSString) {
   return nestProcessor.process(CSSString).css;
+}
+
+/**
+ * @param {typeof import("@babel/core").types} t
+ * @param {import("@babel/types").ObjectExpression} arg
+ */
+function AstToLiteral(t, arg) {
+  let obj = {};
+  arg.properties.forEach(prop => {
+    if (t.isObjectProperty(prop)) {
+      const key = getKey(t, prop.key);
+      const value = getValue(t, prop.value);
+      obj[key] = value;
+    } else {
+      throw new MacroError("Only inline Object expressions are supported");
+    }
+  });
+
+  return obj;
+}
+
+/**
+ * @param {typeof import("@babel/core").types} t
+ * @param {object} key
+ */
+function getKey(t, key) {
+  if (t.isIdentifier(key)) {
+    return key.name;
+  } else if (t.isStringLiteral(key)) {
+    return key.value;
+  }
+  throw new MacroError("Invalide type for key " + key.type);
+}
+
+/**
+ * @param {typeof import("@babel/core").types} t
+ * @param {object} key
+ */
+function getValue(t, key) {
+  if (t.isStringLiteral(key) || t.isNumericLiteral(key)) {
+    return key.value;
+  } else if (t.isObjectExpression(key)) {
+    // Nested Object
+    return AstToLiteral(t, key);
+  } else {
+    throw new MacroError("Invalide type for value " + key.type);
+  }
 }
 
 module.exports = {

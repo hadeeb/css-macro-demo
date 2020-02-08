@@ -13,7 +13,18 @@ function App() {
         }
       `}
     >
-      <header className="App-header">
+      <header
+        className={css({
+          backgroundColor: "#282c34",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "calc(10px + 2vmin)",
+          color: "white"
+        })}
+      >
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
