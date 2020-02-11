@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/css-macro-demo/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/css-macro-demo/static/js/main.23466532.chunk.js",
+    "main.js.map": "/css-macro-demo/static/js/main.23466532.chunk.js.map",
+    "runtime-main.js": "/css-macro-demo/static/js/runtime-main.b8601037.js",
+    "runtime-main.js.map": "/css-macro-demo/static/js/runtime-main.b8601037.js.map",
+    "static/js/2.23b5e854.chunk.js": "/css-macro-demo/static/js/2.23b5e854.chunk.js",
+    "static/js/2.23b5e854.chunk.js.map": "/css-macro-demo/static/js/2.23b5e854.chunk.js.map",
+    "static/js/3.729f1476.chunk.js": "/css-macro-demo/static/js/3.729f1476.chunk.js",
+    "static/js/3.729f1476.chunk.js.map": "/css-macro-demo/static/js/3.729f1476.chunk.js.map",
+    "index.html": "/css-macro-demo/index.html",
+    "precache-manifest.11f6dbb562ad770e8c8e884c13cee5bb.js": "/css-macro-demo/precache-manifest.11f6dbb562ad770e8c8e884c13cee5bb.js",
+    "service-worker.js": "/css-macro-demo/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/css-macro-demo/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.23b5e854.chunk.js.LICENSE.txt": "/css-macro-demo/static/js/2.23b5e854.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/css-macro-demo/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8601037.js",
+    "static/js/2.23b5e854.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.23466532.chunk.js"
+  ]
+}
